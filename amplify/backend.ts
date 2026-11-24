@@ -23,8 +23,8 @@ bedrockDataSource.grantPrincipal.addToPrincipalPolicy(
   new PolicyStatement({
     // Inference profiles need both: the profile itself, and the model in every US region it may route to.
     resources: [
-      `arn:aws:bedrock:us-east-2:${backend.stack.account}:inference-profile/us.anthropic.claude-sonnet-5-5`,
-      "arn:aws:bedrock:*::foundation-model/anthropic.claude-sonnet-5-5",
+      `arn:aws:bedrock:us-east-2:${backend.stack.account}:inference-profile/us.anthropic.claude-sonnet-4-6`,
+      "arn:aws:bedrock:*::foundation-model/anthropic.claude-sonnet-4-6",
     ],
     actions: ["bedrock:InvokeModel"],
     
