@@ -25,10 +25,11 @@ function App() {
       const { data, errors } = await amplifyClient.queries.askBedrock({
         ingredients: [formData.get("ingredients")?.toString() || ""],
       });
-      if (!errors) {
-        setResult(data?.body || "No data returned");
-      } else {
+      if (errors) {
         console.log(errors);
+        setResult(`Error: ${errors.map((e) => e.message).join("; ")}`);
+      } else {
+        setResult(data?.body || data?.error || "No data returned");
       }
     } catch (e) {
       alert(`An error occurred: ${e}`);

@@ -32,6 +32,10 @@ export function request(ctx) {
   }
   
   export function response(ctx) {
+    // Bedrock errors (no model access, bad model id, IAM) come back as non-200 with a message body
+    if (ctx.result.statusCode !== 200) {
+      return { error: `Bedrock ${ctx.result.statusCode}: ${ctx.result.body}` };
+    }
     // Parse the response body
     const parsedBody = JSON.parse(ctx.result.body);
     // Extract the text content from the response
