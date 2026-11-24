@@ -33,6 +33,8 @@ export function request(ctx) {
   
   export function response(ctx) {
     // Bedrock errors (no model access, bad model id, IAM) come back as non-200 with a message body
+    // ponytail: TEMPORARY debug aid — raw Bedrock body can leak account ID/ARNs to the client.
+    // Replace with a generic message (and util.error for CloudWatch) once generation works.
     if (ctx.result.statusCode !== 200) {
       return { error: `Bedrock ${ctx.result.statusCode}: ${ctx.result.body}` };
     }
