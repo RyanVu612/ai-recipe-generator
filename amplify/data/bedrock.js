@@ -6,7 +6,7 @@ export function request(ctx) {
   
     // Return the request configuration
     return {
-      resourcePath: `/model/anthropic.claude-4-6-sonnet-20260217-v1:0/invoke`,
+      resourcePath: `/model/us.anthropic.claude-sonnet-5-5/invoke`,
       method: "POST",
       params: {
         headers: {

@@ -21,8 +21,10 @@ const bedrockDataSource = backend.data.resources.graphqlApi.addHttpDataSource(
 
 bedrockDataSource.grantPrincipal.addToPrincipalPolicy(
   new PolicyStatement({
+    // Inference profiles need both: the profile itself, and the model in every US region it may route to.
     resources: [
-      "arn:aws:bedrock:us-east-2::foundation-model/anthropic.claude-4-6-sonnet-20260217-v1:0",
+      `arn:aws:bedrock:us-east-2:${backend.stack.account}:inference-profile/us.anthropic.claude-sonnet-5-5`,
+      "arn:aws:bedrock:*::foundation-model/anthropic.claude-sonnet-5-5",
     ],
     actions: ["bedrock:InvokeModel"],
     
